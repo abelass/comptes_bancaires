@@ -1,0 +1,28 @@
+<BOUCLE_banciare_compte(BANCIARE_COMPTES){id_banciare_compte=#ENV{id}}{statut?}>
+<div class='infos'>
+[(#SET{texte_objet,<:banciare_compte:titre_banciare_compte:>})]
+<div class='numero'><:titre_cadre_numero_objet{objet=#GET{texte_objet}}:><p>#ID_BANCIARE_COMPTE</p></div>
+
+[(#FORMULAIRE_INSTITUER_OBJET{banciare_comptes,#ID_BANCIARE_COMPTE})]
+
+[(#REM)
+
+	Bouton voir en ligne
+
+]
+<BOUCLE_publie(BANCIARE_COMPTES){id_banciare_compte}>
+	[(#VAL{redirect}
+		|generer_url_action{type=banciare_comptes&id=#ID_BANCIARE_COMPTE}
+		|parametre_url{var_mode,calcul}
+		|icone_horizontale{<:icone_voir_en_ligne:>,racine})]
+</BOUCLE_publie>
+	[(#AUTORISER{previsualiser,banciare_comptes,#ID_BANCIARE_COMPTE,'',#ARRAY{statut,#STATUT}})
+		[(#VAL{redirect}
+			|generer_url_action{type=banciare_comptes&id=#ID_BANCIARE_COMPTE}
+			|parametre_url{var_mode,preview}
+			|icone_horizontale{<:previsualiser:>,preview})]
+	]
+<//B_publie>
+
+</div>
+</BOUCLE_banciare_compte>

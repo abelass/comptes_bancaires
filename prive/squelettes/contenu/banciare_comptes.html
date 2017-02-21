@@ -1,0 +1,8 @@
+#FORMULAIRE_RECHERCHE_ECRIRE{#SELF,ajax}
+<div class="nettoyeur"></div>
+
+<INCLURE{fond=prive/objets/liste/banciare_comptes, par=nom, env, ajax, sinon=<:banciare_compte:info_aucun_banciare_compte:>}>
+
+[(#AUTORISER{creer,banciare_compte})
+	[(#URL_ECRIRE{banciare_compte_edit,new=oui}|icone_verticale{<:banciare_compte:icone_creer_banciare_compte:>,banciare_compte,new,right})]
+]

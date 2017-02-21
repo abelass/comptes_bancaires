@@ -1,0 +1,51 @@
+<paquet
+	prefix="comptes_bancaires"
+	categorie="communication"
+	version="1.0.0"
+	etat="dev"
+	compatibilite="[3.0.24;3.1.*]"
+	logo="prive/themes/spip/images/comptes_bancaires-64.png"
+	documentation=""
+	schema="1.0.0" 
+>
+	<!--
+		Paquet genere le 2017-02-21 16:08:36
+		(Vous pouvez bien entendu supprimer ces commentaires) 
+	-->
+
+	<nom>Comptes bancaires</nom>
+
+	<!-- cette balise peut etre presente plusieurs fois s'il y a plusieurs auteurs --> 
+	<auteur lien='http://wesbimple.be'>Rainer</auteur>
+
+	<licence>GNU/GPL</licence>
+
+	<!--
+		Exemple de commandes
+		* dependances
+		<necessite nom="saisies" compatibilite="[1.21.0;]" />
+		<utilise nom="saisies" compatibilite="[1.21.0;]" />
+		<lib nom="simplehtmldom" lien="http://chemin_vers_archive.zip" />
+		* pipelines
+		<pipeline nom="autoriser" inclure="comptes_bancaires_autorisations.php" />
+		<pipeline nom="insert_head" inclure="comptes_bancaires_pipelines.php" />
+		* declarer un pipeline 
+		<pipeline nom="mon_pipeline" action="" />
+		* parents de menus de SPIP :
+				menu_accueil (A eviter), menu_edition, menu_publication,
+				menu_activite, menu_squelette, menu_administration, menu_configuration 
+		<menu nom="comptes_bancaires" titre="comptes_bancaires:comptes_bancaires_titre" parent="menu_edition"  icone="images/comptes_bancaires-16.png" />
+		* parents d'onglets... configuration, plugins, statistiques, ... 
+		<onglet nom="comptes_bancaires" titre="comptes_bancaires:comptes_bancaires_titre" parent="configuration" icone="images/comptes_bancaires-24.png" />
+	-->
+
+	<necessite nom="saisies"  compatibilite="[1.24.0;]" /> 
+
+
+	<pipeline nom="autoriser" inclure="comptes_bancaires_autorisations.php" /> 
+
+	<pipeline nom="declarer_tables_objets_sql" inclure="base/comptes_bancaires.php" /> 
+	<pipeline nom="declarer_tables_interfaces" inclure="base/comptes_bancaires.php" /> 
+
+	<menu nom="banciare_comptes" titre="banciare_compte:titre_banciare_comptes" parent="menu_edition" icone="images/banciare_compte-16.png" action="banciare_comptes" /> 
+</paquet>
