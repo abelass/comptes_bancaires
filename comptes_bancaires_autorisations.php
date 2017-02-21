@@ -36,11 +36,11 @@ function autoriser_comptes_bancaires_configurer_dist($faire, $type, $id, $qui, $
 */
 
 // -----------------
-// Objet banciare_comptes
+// Objet bancaire_comptes
 
 
 /**
- * Autorisation de voir un élément de menu (banciarecomptes)
+ * Autorisation de voir un élément de menu (bancairecomptes)
  *
  * @param  string $faire Action demandée
  * @param  string $type  Type d'objet sur lequel appliquer l'action
@@ -49,13 +49,13 @@ function autoriser_comptes_bancaires_configurer_dist($faire, $type, $id, $qui, $
  * @param  array  $opt   Options de cette autorisation
  * @return bool          true s'il a le droit, false sinon
 **/
-function autoriser_banciarecomptes_menu_dist($faire, $type, $id, $qui, $opt){
+function autoriser_bancairecomptes_menu_dist($faire, $type, $id, $qui, $opt){
 	return true;
 } 
 
 
 /**
- * Autorisation de créer (banciarecompte)
+ * Autorisation de créer (bancairecompte)
  *
  * @param  string $faire Action demandée
  * @param  string $type  Type d'objet sur lequel appliquer l'action
@@ -64,12 +64,12 @@ function autoriser_banciarecomptes_menu_dist($faire, $type, $id, $qui, $opt){
  * @param  array  $opt   Options de cette autorisation
  * @return bool          true s'il a le droit, false sinon
 **/
-function autoriser_banciarecompte_creer_dist($faire, $type, $id, $qui, $opt) {
+function autoriser_bancairecompte_creer_dist($faire, $type, $id, $qui, $opt) {
 	return in_array($qui['statut'], array('0minirezo', '1comite')); 
 }
 
 /**
- * Autorisation de voir (banciarecompte)
+ * Autorisation de voir (bancairecompte)
  *
  * @param  string $faire Action demandée
  * @param  string $type  Type d'objet sur lequel appliquer l'action
@@ -78,12 +78,12 @@ function autoriser_banciarecompte_creer_dist($faire, $type, $id, $qui, $opt) {
  * @param  array  $opt   Options de cette autorisation
  * @return bool          true s'il a le droit, false sinon
 **/
-function autoriser_banciarecompte_voir_dist($faire, $type, $id, $qui, $opt) {
+function autoriser_bancairecompte_voir_dist($faire, $type, $id, $qui, $opt) {
 	return true;
 }
 
 /**
- * Autorisation de modifier (banciarecompte)
+ * Autorisation de modifier (bancairecompte)
  *
  * @param  string $faire Action demandée
  * @param  string $type  Type d'objet sur lequel appliquer l'action
@@ -92,12 +92,12 @@ function autoriser_banciarecompte_voir_dist($faire, $type, $id, $qui, $opt) {
  * @param  array  $opt   Options de cette autorisation
  * @return bool          true s'il a le droit, false sinon
 **/
-function autoriser_banciarecompte_modifier_dist($faire, $type, $id, $qui, $opt) {
+function autoriser_bancairecompte_modifier_dist($faire, $type, $id, $qui, $opt) {
 	return in_array($qui['statut'], array('0minirezo', '1comite'));
 }
 
 /**
- * Autorisation de supprimer (banciarecompte)
+ * Autorisation de supprimer (bancairecompte)
  *
  * @param  string $faire Action demandée
  * @param  string $type  Type d'objet sur lequel appliquer l'action
@@ -106,7 +106,7 @@ function autoriser_banciarecompte_modifier_dist($faire, $type, $id, $qui, $opt) 
  * @param  array  $opt   Options de cette autorisation
  * @return bool          true s'il a le droit, false sinon
 **/
-function autoriser_banciarecompte_supprimer_dist($faire, $type, $id, $qui, $opt) {
+function autoriser_bancairecompte_supprimer_dist($faire, $type, $id, $qui, $opt) {
 	return $qui['statut'] == '0minirezo' AND !$qui['restreint'];
 }
 

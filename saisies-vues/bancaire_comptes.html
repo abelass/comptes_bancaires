@@ -1,0 +1,20 @@
+<BOUCLE_test_multiple(CONDITION){si #ENV{multiple}|=={on}|oui}>
+	[(#SET{valeur,[(#ENV*{valeur}|is_array|?{[(#ENV*{valeur})],[(#ENV*{valeur}|explode{','})]})]})]
+	<B_bancaire_comptes_selectionnes>
+	<ul>
+	<BOUCLE_bancaire_comptes_selectionnes(BANCAIRE_COMPTES){id_bancaire_compte IN #GET*{valeur}}
+		{par num nom, nom}{statut?}{tout}>
+		<li class="choix">#NOM (#ID_BANCAIRE_COMPTE)</li>
+	</BOUCLE_bancaire_comptes_selectionnes>
+	</ul>
+	</B_bancaire_comptes_selectionnes>
+   	[(#ENV*{sans_reponse}|propre)]
+	<//B_bancaire_comptes_selectionnes>
+</BOUCLE_test_multiple>
+	<BOUCLE_bancaire_compte_selectionne(BANCAIRE_COMPTES){id_bancaire_compte=#ENV{valeur}}
+		{par num nom, nom}{statut?}{tout}>
+	  	<p>#NOM (#ID_BANCAIRE_COMPTE)</p>
+	</BOUCLE_bancaire_compte_selectionne>
+   	[(#ENV*{sans_reponse}|propre)]
+	<//B_bancaire_compte_selectionne>
+<//B_test_multiple>

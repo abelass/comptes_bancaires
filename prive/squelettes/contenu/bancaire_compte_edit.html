@@ -1,0 +1,30 @@
+[(#ID_OBJET|oui)
+	[(#AUTORISER{modifier,bancaire_compte,#ID_BANCAIRE_COMPTE}|sinon_interdire_acces)]
+][(#ID_OBJET|non)
+	[(#AUTORISER{creer,bancaire_compte}|sinon_interdire_acces)]
+]
+ 
+#SET{redirect,#ENV{redirect}|sinon{#ID_BANCAIRE_COMPTE|?{#ID_BANCAIRE_COMPTE|generer_url_entite{bancaire_compte},#URL_ECRIRE{bancaire_comptes}}}}
+
+<div class='cadre-formulaire-editer'>
+<div class="entete-formulaire">
+	[(#ID_BANCAIRE_COMPTE|oui)
+	[(#GET{redirect}|icone_verticale{Retour,bancaire_compte,'',left retour[(#ENV{retourajax,''}|oui)ajax preload]})]
+	]
+	[
+		[(#ID_BANCAIRE_COMPTE|?{<:bancaire_compte:icone_modifier_bancaire_compte:>,<:bancaire_compte:icone_creer_bancaire_compte:>})]
+		<h1>(#ENV{titre,#INFO_NOM{bancaire_compte,#ID_BANCAIRE_COMPTE}|sinon{<:info_sans_titre:>}})</h1>
+	]
+</div>
+
+#SET{redirect,#ENV{redirect,#ID_BANCAIRE_COMPTE|generer_url_entite{bancaire_compte}}}
+[(#ENV{retourajax,''}|oui)
+	#SET{redirect,'javascript:if (window.jQuery) jQuery(".entete-formulaire .retour a").followLink();'}
+	<div class="ajax">
+]
+		[(#FORMULAIRE_EDITER_BANCAIRE_COMPTE{#ENV{id_bancaire_compte,oui}, #GET{redirect}, #ENV{associer_objet}})]
+[(#ENV{retourajax,''}|oui)
+	</div>
+	<script type="text/javascript">/*<!\[CDATA\[*/reloadExecPage('#ENV{exec}');/*\]\]>*/</script>
+]
+</div>

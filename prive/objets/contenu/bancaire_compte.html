@@ -1,33 +1,33 @@
-<BOUCLE_banciare_compte(BANCIARE_COMPTES){id_banciare_compte}{statut?}>
+<BOUCLE_bancaire_compte(BANCAIRE_COMPTES){id_bancaire_compte}{statut?}>
 
 [<div class="champ contenu_nom[ (#NOM*|strlen|?{'',vide})]">
-	<label><:banciare_compte:champ_nom_label:> : </label>
+	<label><:bancaire_compte:champ_nom_label:> : </label>
 	<span dir='#LANG_DIR' class='#EDIT{nom} nom'>(#NOM)</span>
 </div>]
 
 [<div class="champ contenu_nom_banque[ (#NOM_BANQUE*|strlen|?{'',vide})]">
-	<label><:banciare_compte:champ_nom_banque_label:> : </label>
+	<label><:bancaire_compte:champ_nom_banque_label:> : </label>
 	<span dir='#LANG_DIR' class='#EDIT{nom_banque} nom_banque'>(#NOM_BANQUE)</span>
 </div>]
 
 [<div class="champ contenu_adresse_banque[ (#ADRESSE_BANQUE*|strlen|?{'',vide})]">
-	<label><:banciare_compte:champ_adresse_banque_label:> : </label>
+	<label><:bancaire_compte:champ_adresse_banque_label:> : </label>
 	<span dir='#LANG_DIR' class='#EDIT{adresse_banque} adresse_banque'>(#ADRESSE_BANQUE)</span>
 </div>]
 
 [<div class="champ contenu_iban[ (#IBAN*|strlen|?{'',vide})]">
-	<label><:banciare_compte:champ_iban_label:> : </label>
+	<label><:bancaire_compte:champ_iban_label:> : </label>
 	<span dir='#LANG_DIR' class='#EDIT{iban} iban'>(#IBAN)</span>
 </div>]
 
 [<div class="champ contenu_bic[ (#BIC*|strlen|?{'',vide})]">
-	<label><:banciare_compte:champ_bic_label:> : </label>
+	<label><:bancaire_compte:champ_bic_label:> : </label>
 	<span dir='#LANG_DIR' class='#EDIT{bic} bic'>(#BIC)</span>
 </div>]
 
 [<div class="champ contenu_remarques[ (#REMARQUES*|strlen|?{'',vide})]">
-	<label><:banciare_compte:champ_remarques_label:> : </label>
+	<label><:bancaire_compte:champ_remarques_label:> : </label>
 	<span dir='#LANG_DIR' class='#EDIT{remarques} remarques'>(#REMARQUES)</span>
 </div>]
 
-</BOUCLE_banciare_compte>
+</BOUCLE_bancaire_compte>

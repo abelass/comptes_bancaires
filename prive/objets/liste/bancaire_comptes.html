@@ -1,0 +1,36 @@
+[(#SET{defaut_tri,#ARRAY{
+	nom,1, 
+	id_bancaire_compte,1,
+	points,-1
+}})]<B_liste_bancaire_comptes>
+#ANCRE_PAGINATION
+<div class="liste-objets bancaire_comptes">
+<table class='spip liste'>
+	[<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{bancaire_compte:info_1_bancaire_compte,bancaire_compte:info_nb_bancaire_comptes}})</strong></caption>]
+	<thead>
+		<tr class='first_row'>
+			<th class='picto' scope='col'></th>
+			<th class='statut' scope='col'>[(#TRI{statut,<span title="<:lien_trier_statut|attribut_html:>">#</span>,ajax})]</th> 
+			<th class='nom' scope='col'>[(#TRI{nom,<:bancaire_compte:champ_nom_label:>,ajax})]</th>
+			<th class='id' scope='col'>[(#TRI{id_bancaire_compte,<:info_numero_abbreviation:>,ajax})]</th>
+		</tr>
+	</thead>
+	<tbody>
+	<BOUCLE_liste_bancaire_comptes(BANCAIRE_COMPTES){id_mot?}{id_auteur?}{where?}{statut?}{recherche?}{tri #ENV{par,num nom},#GET{defaut_tri}}{par nom}{pagination #ENV{nb,10}}>
+		<tr class='[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]'>
+			<td class='picto'>[(#CHEMIN_IMAGE{bancaire_compte-16.png}|balise_img)]</td>
+			<td class='statut'>[(#STATUT|puce_statut{bancaire_compte,#ID_BANCAIRE_COMPTE})]</td> 
+			<td class='nom principale'>[(#LOGO_BANCAIRE_COMPTE|image_reduire{20,26})]<a href="[(#ID_BANCAIRE_COMPTE|generer_url_entite{bancaire_compte})]" title="<:info_numero_abbreviation|attribut_html:> #ID_BANCAIRE_COMPTE">[(#RANG). ]#NOM</a></td>
+			<td class='id'>[(#AUTORISER{modifier,bancaire_compte,#ID_BANCAIRE_COMPTE}|?{
+				<a href="[(#URL_ECRIRE{bancaire_compte_edit,id_bancaire_compte=#ID_BANCAIRE_COMPTE})]">#ID_BANCAIRE_COMPTE</a>,
+				#ID_BANCAIRE_COMPTE
+			})]</td>
+		</tr>
+	</BOUCLE_liste_bancaire_comptes>
+	</tbody>
+</table>
+[<p class='pagination'>(#PAGINATION{prive})</p>]
+</div>
+</B_liste_bancaire_comptes>[
+<div class="liste-objets bancaire_comptes caption-wrap"><strong class="caption">(#ENV*{sinon,''})</strong></div>
+]<//B_liste_bancaire_comptes>

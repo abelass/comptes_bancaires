@@ -23,7 +23,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  */
 function comptes_bancaires_declarer_tables_interfaces($interfaces) {
 
-	$interfaces['table_des_tables']['banciare_comptes'] = 'banciare_comptes';
+	$interfaces['table_des_tables']['bancaire_comptes'] = 'bancaire_comptes';
 
 	return $interfaces;
 }
@@ -40,12 +40,12 @@ function comptes_bancaires_declarer_tables_interfaces($interfaces) {
  */
 function comptes_bancaires_declarer_tables_objets_sql($tables) {
 
-	$tables['banciare_comptes'] = array(
-		'type' => 'banciare_compte',
+	$tables['bancaire_comptes'] = array(
+		'type' => 'bancaire_compte',
 		'principale' => "oui", 
-		'table_objet_surnoms' => array('banciarecompte'), // table_objet('banciare_compte') => 'banciare_comptes' 
+		'table_objet_surnoms' => array('bancairecompte'), // table_objet('bancaire_compte') => 'bancaire_comptes' 
 		'field'=> array(
-			"id_banciare_compte" => "bigint(21) NOT NULL",
+			"id_bancaire_compte" => "bigint(21) NOT NULL",
 			"nom"                => "varchar(255) NOT NULL DEFAULT ''",
 			"nom_banque"         => "varchar(255) NOT NULL DEFAULT ''",
 			"adresse_banque"     => "varchar(255) NOT NULL DEFAULT ''",
@@ -56,7 +56,7 @@ function comptes_bancaires_declarer_tables_objets_sql($tables) {
 			"maj"                => "TIMESTAMP"
 		),
 		'key' => array(
-			"PRIMARY KEY"        => "id_banciare_compte",
+			"PRIMARY KEY"        => "id_bancaire_compte",
 			"KEY statut"         => "statut", 
 		),
 		'titre' => "nom AS titre, '' AS lang",
@@ -81,7 +81,7 @@ function comptes_bancaires_declarer_tables_objets_sql($tables) {
 				'exception' => array('statut','tout')
 			)
 		),
-		'texte_changer_statut' => 'banciare_compte:texte_changer_statut_banciare_compte', 
+		'texte_changer_statut' => 'bancaire_compte:texte_changer_statut_bancaire_compte', 
 		
 
 	);

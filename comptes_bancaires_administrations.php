@@ -49,7 +49,7 @@ function comptes_bancaires_upgrade($nom_meta_base_version, $version_cible) {
 	# );
 	# ...
 
-	$maj['create'] = array(array('maj_tables', array('banciare_comptes')));
+	$maj['create'] = array(array('maj_tables', array('bancaire_comptes')));
 
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
@@ -74,12 +74,12 @@ function comptes_bancaires_vider_tables($nom_meta_base_version) {
 	# sql_drop_table("spip_xx");
 	# sql_drop_table("spip_xx_liens");
 
-	sql_drop_table("banciare_comptes");
+	sql_drop_table("bancaire_comptes");
 
 	# Nettoyer les versionnages et forums
-	sql_delete("spip_versions",              sql_in("objet", array('banciare_compte')));
-	sql_delete("spip_versions_fragments",    sql_in("objet", array('banciare_compte')));
-	sql_delete("spip_forum",                 sql_in("objet", array('banciare_compte')));
+	sql_delete("spip_versions",              sql_in("objet", array('bancaire_compte')));
+	sql_delete("spip_versions_fragments",    sql_in("objet", array('bancaire_compte')));
+	sql_delete("spip_forum",                 sql_in("objet", array('bancaire_compte')));
 
 	effacer_meta($nom_meta_base_version);
 }

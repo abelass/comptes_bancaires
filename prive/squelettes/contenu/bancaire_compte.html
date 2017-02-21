@@ -1,0 +1,46 @@
+[(#AUTORISER{voir,bancaire_compte,#ID_BANCAIRE_COMPTE}|sinon_interdire_acces)]
+<BOUCLE_bancaire_compte(BANCAIRE_COMPTES){id_bancaire_compte}{statut==.*}{si #ENV{exec}|=={bancaire_compte}}>
+[(#BOITE_OUVRIR{[
+	[(#AUTORISER{modifier,bancaire_compte,#ID_BANCAIRE_COMPTE})
+		[(#ID_BANCAIRE_COMPTE|afficher_qui_edite{bancaire_compte}|non)
+			[(#URL_ECRIRE{bancaire_compte_edit,id_bancaire_compte=#ID_BANCAIRE_COMPTE}|icone_verticale{<:bancaire_compte:icone_modifier_bancaire_compte:>,bancaire_compte,edit,right ajax preload})]
+		]
+		[(#ID_BANCAIRE_COMPTE|afficher_qui_edite{bancaire_compte}|oui)
+			[(#URL_ECRIRE{bancaire_compte_edit,id_bancaire_compte=#ID_BANCAIRE_COMPTE}|icone_verticale{#ID_BANCAIRE_COMPTE|afficher_qui_edite{bancaire_compte},warning-24,'',right edition_deja ajax preload})]
+		]
+	]
+
+	<h1>[(#RANG). ](#NOM|sinon{<:info_sans_titre:>})[(#CHEMIN_IMAGE{bancaire_compte-24.png}|balise_img{bancaire_compte,cadre-icone})]</h1>
+
+],simple fiche_objet})]
+
+<div class="ajax">
+	#FORMULAIRE_DATER{bancaire_compte,#ID_BANCAIRE_COMPTE}
+</div>
+
+<!--affiche_milieu-->
+
+<div id="wysiwyg">
+<INCLURE{fond=prive/objets/contenu/bancaire_compte,id=#ID_BANCAIRE_COMPTE,id_bancaire_compte=#ID_BANCAIRE_COMPTE,virtuel=oui,ajax=wysiwyg,wysiwyg=1}>
+</div>
+
+<div class="nettoyeur"></div>
+
+[(#AUTORISER{modifier,bancaire_compte,#ID_BANCAIRE_COMPTE})
+	[(#ID_BANCAIRE_COMPTE|afficher_qui_edite{bancaire_compte}|non)
+		[(#URL_ECRIRE{bancaire_compte_edit,id_bancaire_compte=#ID_BANCAIRE_COMPTE}|icone_verticale{<:bancaire_compte:icone_modifier_bancaire_compte:>,bancaire_compte,edit,right ajax preload})]
+	]
+	[(#ID_BANCAIRE_COMPTE|afficher_qui_edite{bancaire_compte}|oui)
+		[(#URL_ECRIRE{bancaire_compte_edit,id_bancaire_compte=#ID_BANCAIRE_COMPTE}|icone_verticale{#ID_BANCAIRE_COMPTE|afficher_qui_edite{bancaire_compte},warning-24,'',right edition_deja ajax preload})]
+	]
+]
+
+#PIPELINE{afficher_complement_objet,#ARRAY{args,#ARRAY{type,bancaire_compte,id,#ID_BANCAIRE_COMPTE},data,'<div class="nettoyeur"></div>'}}
+
+#BOITE_FERMER
+[(#EVAL{_AJAX}|oui)
+	<script type="text/javascript">/*<!\\[CDATA\\[*/reloadExecPage('#ENV{exec}','#navigation,#chemin,#extra');/*\\]\\]>*/</script>
+]
+</BOUCLE_bancaire_compte>
+[(#ENV**{exec}|=={bancaire_compte_edit}|?{#INCLURE{fond=prive/squelettes/contenu/bancaire_compte_edit,redirect='',env,retourajax=oui},#REM|sinon_interdire_acces})]
+<//B_bancaire_compte>

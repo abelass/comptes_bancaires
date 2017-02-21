@@ -9,7 +9,7 @@
 	schema="1.0.0" 
 >
 	<!--
-		Paquet genere le 2017-02-21 16:08:36
+		Paquet genere le 2017-02-21 16:22:02
 		(Vous pouvez bien entendu supprimer ces commentaires) 
 	-->
 
@@ -47,5 +47,5 @@
 	<pipeline nom="declarer_tables_objets_sql" inclure="base/comptes_bancaires.php" /> 
 	<pipeline nom="declarer_tables_interfaces" inclure="base/comptes_bancaires.php" /> 
 
-	<menu nom="banciare_comptes" titre="banciare_compte:titre_banciare_comptes" parent="menu_edition" icone="images/banciare_compte-16.png" action="banciare_comptes" /> 
+	<menu nom="bancaire_comptes" titre="bancaire_compte:titre_bancaire_comptes" parent="menu_edition" icone="images/bancaire_compte-16.png" action="bancaire_comptes" /> 
 </paquet>

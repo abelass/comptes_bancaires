@@ -1,30 +1,30 @@
-<div class='formulaire_spip formulaire_editer formulaire_#FORM formulaire_#FORM-#ENV{id_banciare_compte,nouveau}'>
+<div class='formulaire_spip formulaire_editer formulaire_#FORM formulaire_#FORM-#ENV{id_bancaire_compte,nouveau}'>
 	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV**{message_ok})</p>]
 	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
 
 	[(#ENV{editable})
 	<form method='post' action='#ENV{action}'><div>
 		#ACTION_FORMULAIRE{#ENV{action}}
-		<input type='hidden' name='id_banciare_compte' value='#ENV{id_banciare_compte}' />
+		<input type='hidden' name='id_bancaire_compte' value='#ENV{id_bancaire_compte}' />
 		<ul>
 
 			[(#SAISIE{input, nom, obligatoire=oui,
-				label=<:banciare_compte:champ_nom_label:>})]
+				label=<:bancaire_compte:champ_nom_label:>})]
 
 			[(#SAISIE{input, nom_banque,
-				label=<:banciare_compte:champ_nom_banque_label:>})]
+				label=<:bancaire_compte:champ_nom_banque_label:>})]
 
 			[(#SAISIE{input, adresse_banque,
-				label=<:banciare_compte:champ_adresse_banque_label:>})]
+				label=<:bancaire_compte:champ_adresse_banque_label:>})]
 
 			[(#SAISIE{input, iban, obligatoire=oui,
-				label=<:banciare_compte:champ_iban_label:>})]
+				label=<:bancaire_compte:champ_iban_label:>})]
 
 			[(#SAISIE{input, bic,
-				label=<:banciare_compte:champ_bic_label:>})]
+				label=<:bancaire_compte:champ_bic_label:>})]
 
 			[(#SAISIE{textarea, remarques,
-				label=<:banciare_compte:champ_remarques_label:>,
+				label=<:bancaire_compte:champ_remarques_label:>,
 				li_class=haut, class=inserer_barre_edition, rows=4})]
 
 		</ul>

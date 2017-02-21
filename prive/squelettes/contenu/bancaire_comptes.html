@@ -1,0 +1,8 @@
+#FORMULAIRE_RECHERCHE_ECRIRE{#SELF,ajax}
+<div class="nettoyeur"></div>
+
+<INCLURE{fond=prive/objets/liste/bancaire_comptes, par=nom, env, ajax, sinon=<:bancaire_compte:info_aucun_bancaire_compte:>}>
+
+[(#AUTORISER{creer,bancaire_compte})
+	[(#URL_ECRIRE{bancaire_compte_edit,new=oui}|icone_verticale{<:bancaire_compte:icone_creer_bancaire_compte:>,bancaire_compte,new,right})]
+]
