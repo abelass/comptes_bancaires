@@ -40,7 +40,7 @@ function comptes_bancaires_declarer_tables_interfaces($interfaces) {
  */
 function comptes_bancaires_declarer_tables_objets_sql($tables) {
 
-	$tables['bancaire_comptes'] = array(
+	$tables['spip_bancaire_comptes'] = array(
 		'type' => 'bancaire_compte',
 		'principale' => "oui", 
 		'table_objet_surnoms' => array('bancairecompte'), // table_objet('bancaire_compte') => 'bancaire_comptes' 

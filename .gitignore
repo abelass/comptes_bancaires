@@ -1,3 +1,5 @@
 /.buildpath
 /.project
 .settings
+/fabrique_comptes_bancaires.php
+/fabrique_diff.diff
