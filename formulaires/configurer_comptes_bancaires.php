@@ -23,7 +23,7 @@ function formulaires_configurer_comptes_bancaires_saisies_dist() {
 					'options' => array(
 						'nom' => 'objets',
 						'defaut' => $config['objets'] ,
-						'label' => _T('comptes_bancaires:label_objets'),
+						'label' => _T('comptes_bancaires:label_lier_objets'),
 					)
 				),
 

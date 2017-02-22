@@ -66,6 +66,10 @@ function formulaires_editer_bancaire_compte_identifier_dist($id_bancaire_compte=
  */
 function formulaires_editer_bancaire_compte_charger_dist($id_bancaire_compte='new', $retour='', $associer_objet='', $lier_trad=0, $config_fonc='', $row=array(), $hidden=''){
 	$valeurs = formulaires_editer_objet_charger('bancaire_compte',$id_bancaire_compte,'',$lier_trad,$retour,$config_fonc,$row,$hidden);
+
+	// Statut par défaut.
+	$valeurs['_hidden'] .= '<input type="hidden" name="statut" value="publie" />';
+
 	return $valeurs;
 }
 
@@ -127,7 +131,7 @@ function formulaires_editer_bancaire_compte_verifier_dist($id_bancaire_compte='n
  */
 function formulaires_editer_bancaire_compte_traiter_dist($id_bancaire_compte='new', $retour='', $associer_objet='', $lier_trad=0, $config_fonc='', $row=array(), $hidden=''){
 	$res = formulaires_editer_objet_traiter('bancaire_compte',$id_bancaire_compte,'',$lier_trad,$retour,$config_fonc,$row,$hidden);
- 
+
 	// Un lien a prendre en compte ?
 	if ($associer_objet AND $id_bancaire_compte = $res['id_bancaire_compte']) {
 		list($objet, $id_objet) = explode('|', $associer_objet);

@@ -20,7 +20,7 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  * - créer la structure SQL,
  * - insérer du pre-contenu,
  * - installer des valeurs de configuration,
- * - mettre à jour la structure SQL 
+ * - mettre à jour la structure SQL
  *
  * @param string $nom_meta_base_version
  *     Nom de la meta informant de la version du schéma de données du plugin installé dans SPIP
@@ -32,7 +32,7 @@ function comptes_bancaires_upgrade($nom_meta_base_version, $version_cible) {
 	$maj = array();
 	# quelques exemples
 	# (que vous pouvez supprimer !)
-	# 
+	#
 	# $maj['create'] = array(array('creer_base'));
 	#
 	# include_spip('inc/config')
@@ -49,7 +49,8 @@ function comptes_bancaires_upgrade($nom_meta_base_version, $version_cible) {
 	# );
 	# ...
 
-	$maj['create'] = array(array('maj_tables', array('spip_bancaire_comptes')));
+	$maj['create'] = array(array('maj_tables', array('spip_bancaire_comptes', 'spip_bancaire_comptes_liens')));
+	$maj['1.0.1'] = array(array('maj_tables', array('spip_bancaire_comptes', 'spip_bancaire_comptes_liens')));
 
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
@@ -58,11 +59,11 @@ function comptes_bancaires_upgrade($nom_meta_base_version, $version_cible) {
 
 /**
  * Fonction de désinstallation du plugin Comptes bancaires.
- * 
+ *
  * Vous devez :
  *
  * - nettoyer toutes les données ajoutées par le plugin et son utilisation
- * - supprimer les tables et les champs créés par le plugin. 
+ * - supprimer les tables et les champs créés par le plugin.
  *
  * @param string $nom_meta_base_version
  *     Nom de la meta informant de la version du schéma de données du plugin installé dans SPIP
@@ -75,6 +76,7 @@ function comptes_bancaires_vider_tables($nom_meta_base_version) {
 	# sql_drop_table("spip_xx_liens");
 
 	sql_drop_table("spip_bancaire_comptes");
+	sql_drop_table("spip_bancaire_comptes_liens");
 
 	# Nettoyer les versionnages et forums
 	sql_delete("spip_versions",              sql_in("objet", array('bancaire_compte')));

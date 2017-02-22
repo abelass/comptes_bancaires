@@ -6,16 +6,16 @@
 	compatibilite="[3.0.24;3.1.*]"
 	logo="prive/themes/spip/images/comptes_bancaires-64.png"
 	documentation=""
-	schema="1.0.0" 
+	schema="1.0.1"
 >
 	<!--
-		Paquet genere le 2017-02-21 16:28:01
-		(Vous pouvez bien entendu supprimer ces commentaires) 
+		Paquet genere le 2017-02-22 11:21:04
+		(Vous pouvez bien entendu supprimer ces commentaires)
 	-->
 
 	<nom>Comptes bancaires</nom>
 
-	<!-- cette balise peut etre presente plusieurs fois s'il y a plusieurs auteurs --> 
+	<!-- cette balise peut etre presente plusieurs fois s'il y a plusieurs auteurs -->
 	<auteur lien='http://wesbimple.be'>Rainer</auteur>
 
 	<licence>GNU/GPL</licence>
@@ -29,23 +29,26 @@
 		* pipelines
 		<pipeline nom="autoriser" inclure="comptes_bancaires_autorisations.php" />
 		<pipeline nom="insert_head" inclure="comptes_bancaires_pipelines.php" />
-		* declarer un pipeline 
+		* declarer un pipeline
 		<pipeline nom="mon_pipeline" action="" />
 		* parents de menus de SPIP :
 				menu_accueil (A eviter), menu_edition, menu_publication,
-				menu_activite, menu_squelette, menu_administration, menu_configuration 
+				menu_activite, menu_squelette, menu_administration, menu_configuration
 		<menu nom="comptes_bancaires" titre="comptes_bancaires:comptes_bancaires_titre" parent="menu_edition"  icone="images/comptes_bancaires-16.png" />
-		* parents d'onglets... configuration, plugins, statistiques, ... 
+		* parents d'onglets... configuration, plugins, statistiques, ...
 		<onglet nom="comptes_bancaires" titre="comptes_bancaires:comptes_bancaires_titre" parent="configuration" icone="images/comptes_bancaires-24.png" />
 	-->
 
-	<necessite nom="saisies"  compatibilite="[1.24.0;]" /> 
+	<necessite nom="saisies"  compatibilite="[1.24.0;]" />
 
 
-	<pipeline nom="autoriser" inclure="comptes_bancaires_autorisations.php" /> 
+	<pipeline nom="autoriser" inclure="comptes_bancaires_autorisations.php" />
 
-	<pipeline nom="declarer_tables_objets_sql" inclure="base/comptes_bancaires.php" /> 
-	<pipeline nom="declarer_tables_interfaces" inclure="base/comptes_bancaires.php" /> 
+	<pipeline nom="declarer_tables_objets_sql" inclure="base/comptes_bancaires.php" />
+	<pipeline nom="declarer_tables_interfaces" inclure="base/comptes_bancaires.php" />
+	<pipeline nom="declarer_tables_auxiliaires" inclure="base/comptes_bancaires.php" />
+	<pipeline nom="affiche_milieu" inclure="comptes_bancaires_pipelines.php" />
+	<pipeline nom="optimiser_base_disparus" inclure="comptes_bancaires_pipelines.php" />
 
-	<menu nom="bancaire_comptes" titre="bancaire_compte:titre_bancaire_comptes" parent="menu_edition" icone="images/bancaire_compte-16.png" action="bancaire_comptes" /> 
+	<menu nom="bancaire_comptes" titre="bancaire_compte:titre_bancaire_comptes" parent="menu_edition" icone="images/bancaire_compte-16.png" action="bancaire_comptes" />
 </paquet>

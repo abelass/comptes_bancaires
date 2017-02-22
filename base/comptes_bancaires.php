@@ -64,7 +64,7 @@ function comptes_bancaires_declarer_tables_objets_sql($tables) {
 		'champs_editables'  => array('nom', 'nom_banque', 'adresse_banque', 'iban', 'bic', 'remarques'),
 		'champs_versionnes' => array('nom', 'nom_banque', 'adresse_banque', 'iban', 'bic', 'remarques'),
 		'rechercher_champs' => array("nom" => 10, "nom_banque" => 8, "adresse_banque" => 5, "iban" => 5, "bic" => 4, "remarques" => 4),
-		'tables_jointures'  => array(),
+		'tables_jointures'  => array('spip_bancaire_comptes_liens'),
 		'statut_textes_instituer' => array(
 			'prepa'    => 'texte_statut_en_cours_redaction',
 			'prop'     => 'texte_statut_propose_evaluation',
@@ -89,6 +89,33 @@ function comptes_bancaires_declarer_tables_objets_sql($tables) {
 	return $tables;
 }
 
+
+/**
+ * Déclaration des tables secondaires (liaisons)
+ *
+ * @pipeline declarer_tables_auxiliaires
+ * @param array $tables
+ *     Description des tables
+ * @return array
+ *     Description complétée des tables
+ */
+function comptes_bancaires_declarer_tables_auxiliaires($tables) {
+
+	$tables['spip_bancaire_comptes_liens'] = array(
+		'field' => array(
+			"id_bancaire_compte" => "bigint(21) DEFAULT '0' NOT NULL",
+			"id_objet"           => "bigint(21) DEFAULT '0' NOT NULL",
+			"objet"              => "VARCHAR(25) DEFAULT '' NOT NULL",
+			"vu"                 => "VARCHAR(6) DEFAULT 'non' NOT NULL"
+		),
+		'key' => array(
+			"PRIMARY KEY"        => "id_bancaire_compte,id_objet,objet",
+			"KEY id_bancaire_compte" => "id_bancaire_compte"
+		)
+	);
+
+	return $tables;
+}
 
 
 ?>
