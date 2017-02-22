@@ -5,6 +5,7 @@
 ]
 #SET{selection,#ENV**{selection,#ENV{objet_source}|lister_objets_lies{#ENV{objet},#ENV{id_objet},#ENV{_objet_lien}}}}
 #SET{debut,#ENV{debutbanl,#EVAL{_request("debutbanl");}}}
+
 <B_liste_bancaire_comptes>
 [(#REM) En cas de pagination indirecte @32, il faut refaire le set car la boucle
 a mis a jour la valeur avec la page reelle]
@@ -31,7 +32,7 @@ a mis a jour la valeur avec la page reelle]
 		[<tr><td colspan="4"><p class='pagination'>(#GET{p})</p></td></tr>]
 
 		<tr class='first_row'>
-			<th class='statut' scope='col'>[(#TRI{statut,<span title="<:lien_trier_statut|attribut_html:>">#</span>,ajax})]</th> 
+			<th class='statut' scope='col'>[(#TRI{statut,<span title="<:lien_trier_statut|attribut_html:>">#</span>,ajax})]</th>
 			<th class='nom' scope='col'>[(#TRI{multi nom,<:bancaire_compte:champ_nom_label:>,ajax})]</th>
 			<th class='action' scope='col'></th>
 		</tr>
@@ -40,7 +41,7 @@ a mis a jour la valeur avec la page reelle]
 	<BOUCLE_liste_bancaire_comptes(BANCAIRE_COMPTES){id_bancaire_compte IN #GET{selection}}{statut?}
 		{tri #ENV{par,multi nom},#GET{defaut_tri}}{pagination #ENV{nb,10} banl}>
 		<tr class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})][ (#EXPOSE|unique)][ (#NOM**|extraire_multi|initiale|=={#ENV{i}}|?{on}|unique)][(#ID_BANCAIRE_COMPTE|=={#ENV{id_lien_ajoute}}|oui)append]">
-			<td class='statut'>[(#STATUT|puce_statut{bancaire_compte})]</td> 
+			<td class='statut'>[(#STATUT|puce_statut{bancaire_compte})]</td>
 			<td class='nom'>[(#LOGO_BANCAIRE_COMPTE|image_reduire{20,20})]<a href="[(#ID_BANCAIRE_COMPTE|generer_url_entite{bancaire_compte})]">#NOM</a></td>
 
 			<td class='action'>
@@ -56,7 +57,33 @@ a mis a jour la valeur avec la page reelle]
 [(#GRAND_TOTAL|>{3}|oui)<div class="action"><button class="button link" name="supprimer_lien\[bancaire_compte-*-#OBJET-#ID_OBJET\]" value="X"><:bancaire_compte:retirer_tous_liens_bancaire_comptes:> [(#CHEMIN_IMAGE{supprimer-8.png}|balise_img{'X'})]</button></div>]
 </div>
 </B_liste_bancaire_comptes>
-<div class="liste-objets liste-objets-lies BANCAIRE_COMPTES caption-wrap">
-	<strong class="caption">[(#ENV*{titre,<:bancaire_compte:info_aucun_bancaire_compte:>})]</strong>
+#SET{compte_defaut,#ENV{objet}|compte_bancaire_defaut{#ENV{id_objet}}}
+
+[(#GET{compte_defaut}|?{
+	<div class="liste-objets liste-objets-lies bancaire_comptes">
+	<table class='spip liste'>
+		<caption><strong class="caption"><:bancaire_compte:info_compte_defaut:></strong></caption>
+
+		<thead>
+		<tr class='first_row'>
+			<th class='nom' scope='col'><:bancaire_compte:champ_nom_label:></th>
+			<th class='iban' scope='col'><:bancaire_compte:champ_iban_label:></th>
+			<th class='action' scope='col'><:bancaire_compte:details:></th>
+		</tr>
+	</thead>
+	<tbody>
+		[<td class="nom">(#GET{compte_defaut}|table_valeur{nom})</td>]
+		[<td class="iban">(#GET{compte_defaut}|table_valeur{iban})</td>]
+		<td class="action"><a href="[(#URL_ECRIRE{configurer_bank})]"><:bank:titre_menu_configurer:></a></td>
+	</tbody>
+	</table>
 </div>
+	,
+	<div class="liste-objets liste-objets-lies BANCAIRE_COMPTES">
+		<strong class="caption"><:bancaire_compte:aucun_compte_defaut:></strong>
+		[<p class="explication">(#VAL{bancaire_compte:aucun_compte_defaut_configurer}
+			|_T{[(#ARRAY{url,<a href="[(#URL_ECRIRE{configurer_bank})]"><:bank:titre_menu_configurer:></a>})]})</p>]
+	</div>
+})]
+
 <//B_liste_bancaire_comptes>

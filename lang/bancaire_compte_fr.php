@@ -8,7 +8,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
 	'ajouter_lien_bancaire_compte' => 'Ajouter ce compte bancaire',
-
+	'aucun_compte_defaut' => 'Aucun compte bancaire par défaut.',
+	'aucun_compte_defaut_configurer' => 'Vous pouvez en configurer aux @url@',
 	// C
 	'champ_adresse_banque_label' => 'Adresse de la banque',
 	'champ_bic_label' => 'BIC',
@@ -17,12 +18,16 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'champ_nom_label' => 'Nom',
 	'champ_remarques_label' => 'Remarques complémentaires',
 
+	// D
+	'details' => 'détails',
+
 	// I
 	'icone_creer_bancaire_compte' => 'Créer un compte bancaire',
 	'icone_modifier_bancaire_compte' => 'Modifier ce compte bancaire',
 	'info_1_bancaire_compte' => 'Un compte bancaire',
 	'info_aucun_bancaire_compte' => 'Aucun compte bancaire',
 	'info_bancaire_comptes_auteur' => 'Les comptes bancaires de cet auteur',
+	'info_compte_defaut' => 'Compte par défaut',
 	'info_nb_bancaire_comptes' => '@nb@ comptes bancaires',
 
 	// R

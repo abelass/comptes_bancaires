@@ -11,15 +11,6 @@
 
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
-
-/*
- * Un fichier de pipelines permet de regrouper
- * les fonctions de branchement de votre plugin
- * sur des pipelines existants.
- */
-
-
-
 /**
  * Ajout de contenu sur certaines pages,
  * notamment des formulaires de liaisons entre objets
@@ -33,7 +24,7 @@ function comptes_bancaires_affiche_milieu($flux) {
 	$texte = "";
 	$e = trouver_objet_exec($flux['args']['exec']);
 
-	// cadeau_cheques sur les objets choisies
+	// bancaire_comptes sur les objets choisies
 	if (! $e['edition'] and in_array($e['table_objet_sql'], array_filter(lire_config('comptes_bancaires/objets', array ())))) {
 		$texte .= recuperer_fond('prive/objets/editer/liens', array (
 			'table_source' => 'bancaire_comptes',
@@ -41,8 +32,6 @@ function comptes_bancaires_affiche_milieu($flux) {
 			'id_objet' => $flux['args'][$e['id_table_objet']]
 		));
 	}
-
-
 
 	if ($texte) {
 		if ($p=strpos($flux['data'],"<!--affiche_milieu-->"))
@@ -53,8 +42,6 @@ function comptes_bancaires_affiche_milieu($flux) {
 
 	return $flux;
 }
-
-
 
 /**
  * Optimiser la base de données en supprimant les liens orphelins
