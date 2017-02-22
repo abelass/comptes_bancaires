@@ -21,18 +21,24 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  *
  * @return array   Les donées du compte par défaut.
  */
-function compte_defaut_article_dist($id_objet, $objet_parent='', $id_objet_parent='') {
-	$objet = 'article';
+function compte_defaut_evenement_dist($id_objet, $objet_parent='', $id_objet_parent='') {
+	$objet = 'evenement';
 	if (!$compte_defaut = sql_fetsel(
 			'*',
-			'spip_bancaire_comptes LEFT JOIN spip_bancaire_comptes_liens
-				ON spip_bancaire_comptes.id_bancaire_compte=spip_bancaire_comptes_liens.id_bancaire_compte',
+			'spip_bancaire_comptes, spip_bancaire_comptes_liens',
 			'objet=' . sql_quote($objet) . ' and id_objet=' . $id_objet)) {
-			$id_rubrique = sql_getfetsel('id_rubrique', 'spip_articles', 'id_article=' . $id_objet);
 
-			// On cherche maintenant s'il existe une personnalisation pour les taxes : prix_<objet>() dans prix/<objet>.php
+			$evenement = sql_fetsel('id_article,id_evenement_source', 'spip_evenements', 'id_evenement=' .$id_objet);
+			$id_article = $evenement['id_article'];
+			$id_evenement_source = $evenement['id_evenement_source'];
 
-			$compte_defaut = compte_bancaire_defaut('rubrique', $id_rubrique);
+			if (!$compte_defaut = sql_fetsel(
+			'*',
+			'spip_bancaire_comptes, spip_bancaire_comptes_liens',
+			'objet=' . sql_quote($objet) . ' and id_objet=' . $id_evenement_source)){
+
+			$compte_defaut = compte_bancaire_defaut('article', $id_article);
+			}
 	}
 
 	return $compte_defaut;

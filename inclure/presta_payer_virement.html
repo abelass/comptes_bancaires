@@ -1,0 +1,25 @@
+<BOUCLE_trans(TRANSACTIONS){id_transaction}{transaction_hash}>
+	<div class="payer_mode payer_virement payer_acte">
+		<p class="titre h4"><:bank:payer_par_virement:></p>
+			#SET{ordre,#NOM|sinon{#NOM_SITE_SPIP}}|wrap{'<b>'}}
+			#SET{montant,#MONTANT|affiche_monnaie|wrap{'<b>'}}
+			#SET{transaction,#ID_TRANSACTION|wrap{'<b>'}}
+			#SET{iban,#IBAN|wrap{'<b>'}}
+			#SET{bic,#BIC|wrap{'<b>'}}
+			#SET{banque,#NOM_BANQUE|wrap{'<b>'}}
+			#SET{adressebanque,#ADRESSE_BANQUE|nl2br}
+
+			<p><:bank:info_mode_reglement_enregistre:> <:bank:confirme_reglement_attente:></p>
+			[(#VAL{bank:info_virement_etablir}|
+			_T{#ARRAY{
+			ordre, #GET{ordre},
+			montant, #GET{montant},
+			transaction, #GET{transaction},
+			iban, #GET{iban},
+			bic, #GET{bic},
+			banque, #GET{banque},
+			adressebanque, #GET{adressebanque}}
+			}|propre)]
+			[<p class="small">(#ENV{config/notice,''}|propre|PtoBR)</p>]
+	</div>
+</BOUCLE_trans>

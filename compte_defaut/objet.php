@@ -23,17 +23,21 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  */
 function compte_defaut_objet_dist($objet, $id_objet, $objet_parent='', $id_objet_parent='') {
 	// On cherche maintenant s'il existe une personnalisation pour les taxes : prix_<objet>() dans prix/<objet>.php
+	$compte_defaut = '';
+
 	if ($fonction_compte_defaut = charger_fonction($objet, 'compte_defaut', true)) {
 		$compte_defaut = $fonction_compte_defaut($id_objet, $objet_parent, $id_objet_parent);
 	}
 	elseif (!$compte_defaut = sql_fetsel(
-				'*',
-				'spip_bancaire_comptes, spip_bancaire_comptes_liens',
-				'objet=' . sql_quote($objet) . ' and id_objet=' . $id_objet)) {
+			'*',
+			'spip_bancaire_comptes LEFT JOIN spip_bancaire_comptes_liens
+				ON spip_bancaire_comptes.id_bancaire_compte=spip_bancaire_comptes_liens.id_bancaire_compte',
+			'objet=' . sql_quote($objet) . ' and id_objet=' . $id_objet)) {
 		if($objet_parent and $id_objet_parent) {
 			$compte_defaut = sql_fetsel(
 					'*',
-					'spip_bancaire_comptes, spip_bancaire_comptes_liens',
+					'spip_bancaire_comptes LEFT JOIN spip_bancaire_comptes_liens
+						ON spip_bancaire_comptes.id_bancaire_compte=spip_bancaire_comptes_liens.id_bancaire_compte',
 					'objet=' . sql_quote($objet_parent) . ' and id_objet=' . $id_objet_parent);
 		}
 	}
