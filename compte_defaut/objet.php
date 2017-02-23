@@ -20,17 +20,18 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  * @return array   Les données du compte par défaut.
  */
 function compte_defaut_objet_dist($objet, $id_objet) {
-	// On cherche maintenant s'il existe une personnalisation pour les taxes : prix_<objet>() dans prix/<objet>.php
 	$compte_defaut = '';
 
+	// On cherche s'il existe une personnalisation : prix_<objet>() dans compte_defaut/<objet>.php
 	if ($fonction_compte_defaut = charger_fonction($objet, 'compte_defaut', true)) {
 		$compte_defaut = $fonction_compte_defaut($id_objet);
 	}
+	// Sinon on cherche les comptes liés à cet objet.
 	else {
 		$compte_defaut = cb_compte_lie($objet, $id_objet);
 	}
 
-	//Valeurs par défaut
+	// Si rien trouvé et que bank est activé, on pioche dans la config des virements
 	if (!$compte_defaut and test_plugin_actif('bank')) {
 		include_spip('inc/config');
 		$compte_defaut = lire_config('bank_paiement/config_virement', array());
@@ -65,7 +66,7 @@ function compte_defaut_objet_dist($objet, $id_objet) {
 function cb_compte_lie($objet, $id_objet) {
 	return sql_fetsel(
 			'*',
-			'spip_bancaire_comptes LEFT JOIN spip_bancaire_comptes_liens
-				ON spip_bancaire_comptes.id_bancaire_compte=spip_bancaire_comptes_liens.id_bancaire_compte',
+			'spip_bancaire_comptes AS bc LEFT JOIN spip_bancaire_comptes_liens AS bcl
+				ON bc.id_bancaire_compte=bcl.id_bancaire_compte',
 			'objet=' . sql_quote($objet) . ' and id_objet=' . $id_objet);
 }

@@ -58,31 +58,46 @@ a mis a jour la valeur avec la page reelle]
 </div>
 </B_liste_bancaire_comptes>
 #SET{compte_defaut,#ENV{objet}|compte_bancaire_defaut{#ENV{id_objet}}}
-
 [(#GET{compte_defaut}|?{
+	[(#GET{compte_defaut}|table_valeur{objet}|et{#GET{compte_defaut}|table_valeur{id_objet}}|?{
+		[(#SET{objet, #GET{compte_defaut}|table_valeur{objet}})]
+		[(#SET{id_objet, #GET{compte_defaut}|table_valeur{id_objet}})]
+
+		[(#SET{url, #GET{objet}|generer_url_ecrire_objet{#GET{id_objet}}})]
+		[(#SET{titre, #INFO_TITRE{#GET{objet}, #GET{id_objet}}})]
+		,
+		[(#SET{url, #URL_ECRIRE{configurer_bank}})]
+		[(#SET{titre, #VAL{bank:titre_menu_configurer}|_T})]
+	})]
 	<div class="liste-objets liste-objets-lies bancaire_comptes">
 	<table class='spip liste'>
-		<caption><strong class="caption"><:bancaire_compte:info_compte_defaut:></strong></caption>
+		<caption><strong class="caption">[(#VAL{bancaire_compte:info_compte_defaut}|_T)]</strong></caption>
 
 		<thead>
 		<tr class='first_row'>
-			<th class='nom' scope='col'><:bancaire_compte:champ_nom_label:></th>
-			<th class='iban' scope='col'><:bancaire_compte:champ_iban_label:></th>
-			<th class='action' scope='col'><:bancaire_compte:details:></th>
+			<th class='nom' scope='col'>[(#VAL{bancaire_compte:champ_nom_label}|_T)]</th>
+			<th class='iban' scope='col'>[(#VAL{bancaire_compte:champ_iban_label}|_T)]</th>
+			<th class='action' scope='col'>[(#VAL{bancaire_compte:origine}|_T)]</th>
 		</tr>
 	</thead>
 	<tbody>
 		[<td class="nom">(#GET{compte_defaut}|table_valeur{nom})</td>]
 		[<td class="iban">(#GET{compte_defaut}|table_valeur{iban})</td>]
-		<td class="action"><a href="[(#URL_ECRIRE{configurer_bank})]"><:bank:titre_menu_configurer:></a></td>
+		<td class="action"><a href="[(#GET{url})]">[(#GET{titre})]</a></td>
 	</tbody>
 	</table>
 </div>
 	,
 	<div class="liste-objets liste-objets-lies BANCAIRE_COMPTES">
-		<strong class="caption"><:bancaire_compte:aucun_compte_defaut:></strong>
-		[<p class="explication">(#VAL{bancaire_compte:aucun_compte_defaut_configurer}
-			|_T{[(#ARRAY{url,<a href="[(#URL_ECRIRE{configurer_bank})]"><:bank:titre_menu_configurer:></a>})]})</p>]
+		<strong class="caption">[(#VAL{bancaire_compte:aucun_compte_defaut}|_T)]</strong>
+		[<p class="explication">
+			(#VAL{bancaire_compte:aucun_compte_defaut_configurer}
+				|_T{[(#ARRAY{
+					url,
+					<a href="[(#URL_ECRIRE{configurer_bank})]">
+						[(#VAL{bank:titre_menu_configurer}|_T)]
+					</a>}
+				)]})</p>]
 	</div>
 })]
 

@@ -18,9 +18,6 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'champ_nom_label' => 'Nom',
 	'champ_remarques_label' => 'Remarques complémentaires',
 
-	// D
-	'details' => 'détails',
-
 	// I
 	'icone_creer_bancaire_compte' => 'Créer un compte bancaire',
 	'icone_modifier_bancaire_compte' => 'Modifier ce compte bancaire',
@@ -29,6 +26,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'info_bancaire_comptes_auteur' => 'Les comptes bancaires de cet auteur',
 	'info_compte_defaut' => 'Compte par défaut',
 	'info_nb_bancaire_comptes' => '@nb@ comptes bancaires',
+
+	// O
+	'origine' => 'Origine',
 
 	// R
 	'retirer_lien_bancaire_compte' => 'Retirer ce compte bancaire',
