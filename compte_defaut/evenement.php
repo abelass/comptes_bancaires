@@ -12,7 +12,7 @@
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
 /**
- * Fonction qui détermine l'hierarchie au niveau de l'article
+ * Fonction qui détermine l'hierarchie au niveau de l'évenement.
  *
  * @param  integer $id_objet l'id de l'objet.
  *
