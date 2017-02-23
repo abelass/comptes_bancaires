@@ -16,26 +16,16 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  *
  * @param  integer $objet Objet dont on checrche le compte.
  * @param  integer $id_objet l'id de l'objet.
- * @param  integer $objet_parent L'objet parent
- * @param  integer $id_objet_parent L'id de l'objet parent
  *
  * @return array   Les donées du compte par défaut.
  */
-function compte_defaut_objet_dist($objet, $id_objet, $objet_parent='', $id_objet_parent='') {
+function compte_defaut_objet_dist($objet, $id_objet) {
 	// On cherche maintenant s'il existe une personnalisation pour les taxes : prix_<objet>() dans prix/<objet>.php
 	if ($fonction_compte_defaut = charger_fonction($objet, 'compte_defaut', true)) {
 		$compte_defaut = $fonction_compte_defaut($id_objet, $objet_parent, $id_objet_parent);
 	}
-	elseif (!$compte_defaut = sql_fetsel(
-				'*',
-				'spip_bancaire_comptes, spip_bancaire_comptes_liens',
-				'objet=' . sql_quote($objet) . ' and id_objet=' . $id_objet)) {
-		if($objet_parent and $id_objet_parent) {
-			$compte_defaut = sql_fetsel(
-					'*',
-					'spip_bancaire_comptes, spip_bancaire_comptes_liens',
-					'objet=' . sql_quote($objet_parent) . ' and id_objet=' . $id_objet_parent);
-		}
+	elseif ($objets_lies = lister_objets_lies('bancaire_compte', $objet, $id_objet, 'bancaire_compte')) {
+		$compte_defaut = $objets_lies[0];
 	}
 
 	//Valeurs par défaut

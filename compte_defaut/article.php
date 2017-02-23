@@ -23,15 +23,15 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  */
 function compte_defaut_article_dist($id_objet, $objet_parent='', $id_objet_parent='') {
 	$objet = 'article';
-	if (!$compte_defaut = sql_fetsel(
-			'*',
-			'spip_bancaire_comptes, spip_bancaire_comptes_liens',
-			'objet=' . sql_quote($objet) . ' and id_objet=' . $id_objet)) {
-			$id_rubrique = sql_getfetsel('id_rubrique', 'spip_articles', 'id_article=' .$id_objet);
+	if ($objets_lies = lister_objets_lies('bancaire_compte', $objet, $id_objet, 'bancaire_compte')) {
+		$compte_defaut = $objets_lies[0];
+	}
+	else{
+		$id_rubrique = sql_getfetsel('id_rubrique', 'spip_articles', 'id_article=' .$id_objet);
 
-			// On cherche maintenant s'il existe une personnalisation pour les taxes : prix_<objet>() dans prix/<objet>.php
-			$fonction_compte_defaut = charger_fonction('objet', 'compte_defaut', true);
-			$compte_defaut = $fonction_compte_defaut('rubrique', $id_rubrique);
+		// On cherche maintenant s'il existe une personnalisation pour les taxes : prix_<objet>() dans prix/<objet>.php
+		$fonction_compte_defaut = charger_fonction('objet', 'compte_defaut', true);
+		$compte_defaut = $fonction_compte_defaut('rubrique', $id_rubrique);
 	}
 
 	return $compte_defaut;

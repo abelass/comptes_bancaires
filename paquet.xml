@@ -8,14 +8,9 @@
 	documentation=""
 	schema="1.0.1"
 >
-	<!--
-		Paquet genere le 2017-02-22 11:21:04
-		(Vous pouvez bien entendu supprimer ces commentaires)
-	-->
 
 	<nom>Comptes bancaires</nom>
 
-	<!-- cette balise peut etre presente plusieurs fois s'il y a plusieurs auteurs -->
 	<auteur lien='http://wesbimple.be'>Rainer</auteur>
 
 	<licence>GNU/GPL</licence>
