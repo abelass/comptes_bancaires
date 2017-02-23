@@ -57,4 +57,26 @@ function comptes_bancaires_optimiser_base_disparus($flux){
 	return $flux;
 }
 
+/**
+ * Permet de compléter ou modifier le résultat de la compilation d’un squelette donné.
+ *
+ * @pipeline recuperer_fond
+ *
+ * @param array $flux
+ *        	Données du pipeline
+ * @return array Données du pipeline
+ */
+function comptes_bancaires_recuperer_fond($flux) {
+	$fond = $flux['args']['fond'];
+	$contexte = $flux['data']['contexte'];
+
+	if ($fond == 'presta/virement/payer/attente') {
+		print_r($contexte);
+		//$contexte['compte_defaut'] = compte_bancaire_defaut()
+		$flux['data']['contexte'] = recuperer_fond('inclure/presta_payer_virement', $contexte);
+
+	}
+
+	return $flux;
+}
 ?>
