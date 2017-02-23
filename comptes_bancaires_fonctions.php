@@ -21,9 +21,10 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
  */
 function compte_bancaire_defaut($objet, $id_objet) {
 	// On cherche maintenant s'il existe une personnalisation pour les taxes : prix_<objet>() dans prix/<objet>.php
-	if ($fonction_compte_defaut = charger_fonction('objet', 'compte_defaut', true)){
-		return $compte_defaut = $fonction_compte_defaut($objet, $id_objet, $objet_parent, $id_objet_parent);
-	}
+	$fonction_compte_defaut = charger_fonction('objet', 'compte_defaut');
+
+	return $fonction_compte_defaut($objet, $id_objet, $objet_parent, $id_objet_parent);
+
 }
 
 ?>

@@ -70,11 +70,33 @@ function comptes_bancaires_recuperer_fond($flux) {
 	$fond = $flux['args']['fond'];
 	$contexte = $flux['data']['contexte'];
 
+	// Modifie les infos bancaire en cas de viremen via le plugin bank.
 	if ($fond == 'presta/virement/payer/attente') {
-		print_r($contexte);
-		//$contexte['compte_defaut'] = compte_bancaire_defaut()
-		$flux['data']['contexte'] = recuperer_fond('inclure/presta_payer_virement', $contexte);
+		$champs = array('id_commande', 'montant');
 
+		if (test_plugin_actif('reservation_evenement')) {
+			$champs[] = 'id_reservation';
+		}
+
+		if($transaction = sql_fetsel(
+				$champs,
+				'spip_transactions',
+				'id_transaction=' . $contexte['id_transaction'] . ' AND transaction_hash =' . $contexte['transaction_hash'])) {
+				$fonction_compte_defaut = charger_fonction('objet', 'compte_defaut');
+				$contexte['montant'] = $transaction['montant'];
+				foreach ($transaction as $champ => $valeur) {
+					if ($champ == 'id_commande' AND $valeur != 0) {
+						$commande = sql_fetsel('objet, id_objet', 'spip_commandes_details', 'id_commande=' .$valeur);
+						$compte = $fonction_compte_defaut($commande['objet'], $commande['id_objet']);
+					}
+					elseif ($champ == 'id_reservation' AND $valeur != 0) {
+						$id_evenement = sql_getfetsel('id_evenement', 'spip_reservations_details', 'id_reservation=' .$valeur);
+						$compte = $fonction_compte_defaut('evenement', $id_evenement);
+					}
+				}
+				$contexte = array_merge($contexte, $compte);
+		}
+		$flux['data']['texte'] = recuperer_fond('inclure/presta_payer_virement', $contexte);
 	}
 
 	return $flux;
