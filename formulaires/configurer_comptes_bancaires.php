@@ -3,7 +3,6 @@
 // Sécurité
 if (!defined('_ECRIRE_INC_VERSION'))
 	return;
-
 function formulaires_configurer_comptes_bancaires_saisies_dist() {
 	include_spip('inc/config');
 
@@ -22,12 +21,11 @@ function formulaires_configurer_comptes_bancaires_saisies_dist() {
 					'saisie' => 'choisir_objets',
 					'options' => array(
 						'nom' => 'objets',
-						'defaut' => $config['objets'] ,
-						'label' => _T('comptes_bancaires:label_lier_objets'),
+						'defaut' => $config['objets'],
+						'label' => _T('comptes_bancaires:label_lier_objets')
 					)
-				),
-
-		),
+				)
+			)
 		)
 	);
 }
