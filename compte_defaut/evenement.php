@@ -28,7 +28,7 @@ function compte_defaut_evenement_dist($id_objet) {
 			$id_evenement_source = $evenement['id_evenement_source'];
 			// l'évenement source.
 			if (!$compte_defaut = cb_compte_lie($objet, $id_evenement_source)){
-				//L'article aprent
+				//L'article parent
 				$compte_defaut = compte_bancaire_defaut('article', $id_article);
 			}
 	}

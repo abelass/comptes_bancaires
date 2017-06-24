@@ -101,4 +101,25 @@ function comptes_bancaires_recuperer_fond($flux) {
 
 	return $flux;
 }
-?>
+
+/**
+ * Ajouter les configurations dans celle de réservation événements.
+ *
+ * @pipeline reservation_evenement_objets_configuration
+ *
+ * @param array $flux
+ *        	Données du pipeline
+ * @return array Données du pipeline
+ */
+function comptes_bancaires_reservation_evenement_objets_configuration($flux) {
+
+	$objets = array(
+		'comptes_bancaires' => array(
+			'label' => _T('comptes_bancaires:comptes_bancaires_titre'),
+		),
+	);
+
+	$flux['data'] = array_merge($flux['data'], $objets);
+
+	return $flux;
+}
