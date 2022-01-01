@@ -3,7 +3,7 @@
  * Déclarations relatives à la base de données
  *
  * @plugin     Comptes bancaires
- * @copyright  2017
+ * @copyright  2017 - 2022
  * @author     Rainer
  * @licence    GNU/GPL
  * @package    SPIP\Comptes_bancaires\Pipelines
@@ -42,8 +42,8 @@ function comptes_bancaires_declarer_tables_objets_sql($tables) {
 
 	$tables['spip_bancaire_comptes'] = array(
 		'type' => 'bancaire_compte',
-		'principale' => "oui", 
-		'table_objet_surnoms' => array('bancairecompte'), // table_objet('bancaire_compte') => 'bancaire_comptes' 
+		'principale' => "oui",
+		'table_objet_surnoms' => array('bancairecompte'), // table_objet('bancaire_compte') => 'bancaire_comptes'
 		'field'=> array(
 			"id_bancaire_compte" => "bigint(21) NOT NULL",
 			"nom"                => "varchar(255) NOT NULL DEFAULT ''",
@@ -52,12 +52,12 @@ function comptes_bancaires_declarer_tables_objets_sql($tables) {
 			"iban"               => "varchar(255) NOT NULL DEFAULT ''",
 			"bic"                => "varchar(255) NOT NULL DEFAULT ''",
 			"remarques"          => "text NOT NULL DEFAULT ''",
-			"statut"             => "varchar(20)  DEFAULT '0' NOT NULL", 
+			"statut"             => "varchar(20)  DEFAULT '0' NOT NULL",
 			"maj"                => "TIMESTAMP"
 		),
 		'key' => array(
 			"PRIMARY KEY"        => "id_bancaire_compte",
-			"KEY statut"         => "statut", 
+			"KEY statut"         => "statut",
 		),
 		'titre' => "nom AS titre, '' AS lang",
 		 #'date' => "",
@@ -77,12 +77,12 @@ function comptes_bancaires_declarer_tables_objets_sql($tables) {
 				'champ'     => 'statut',
 				'publie'    => 'publie',
 				'previsu'   => 'publie,prop,prepa',
-				'post_date' => 'date', 
+				'post_date' => 'date',
 				'exception' => array('statut','tout')
 			)
 		),
-		'texte_changer_statut' => 'bancaire_compte:texte_changer_statut_bancaire_compte', 
-		
+		'texte_changer_statut' => 'bancaire_compte:texte_changer_statut_bancaire_compte',
+
 
 	);
 

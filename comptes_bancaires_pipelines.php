@@ -3,7 +3,7 @@
  * Utilisations de pipelines par Comptes bancaires
  *
  * @plugin     Comptes bancaires
- * @copyright  2017
+ * @copyright  2017 - 2022
  * @author     Rainer
  * @licence    GNU/GPL
  * @package    SPIP\Comptes_bancaires\Pipelines

@@ -3,7 +3,7 @@
  * Définit les autorisations du plugin Comptes bancaires
  *
  * @plugin     Comptes bancaires
- * @copyright  2017
+ * @copyright  2017 - 2022
  * @author     Rainer
  * @licence    GNU/GPL
  * @package    SPIP\Comptes_bancaires\Autorisations
@@ -51,7 +51,7 @@ function autoriser_comptes_bancaires_configurer_dist($faire, $type, $id, $qui, $
 **/
 function autoriser_bancairecomptes_menu_dist($faire, $type, $id, $qui, $opt){
 	return true;
-} 
+}
 
 
 /**
@@ -65,7 +65,7 @@ function autoriser_bancairecomptes_menu_dist($faire, $type, $id, $qui, $opt){
  * @return bool          true s'il a le droit, false sinon
 **/
 function autoriser_bancairecompte_creer_dist($faire, $type, $id, $qui, $opt) {
-	return in_array($qui['statut'], array('0minirezo', '1comite')); 
+	return in_array($qui['statut'], array('0minirezo', '1comite'));
 }
 
 /**
