@@ -1,9 +1,9 @@
 <paquet
 	prefix="comptes_bancaires"
 	categorie="communication"
-	version="1.0.2"
+	version="1.0.3"
 	etat="test"
-	compatibilite="[3.0.24;3.2.*]"
+	compatibilite="[3.0.24;4.0.*]"
 	logo="prive/themes/spip/images/comptes_bancaires-64.png"
 	documentation=""
 	schema="1.0.0"
